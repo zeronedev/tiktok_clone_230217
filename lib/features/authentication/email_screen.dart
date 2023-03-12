@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:tiktok_clone_230217/constants/gaps.dart';
 import 'package:tiktok_clone_230217/constants/sizes.dart';
-import 'package:tiktok_clone_230217/features/authentication/email_screen.dart';
 import 'package:tiktok_clone_230217/features/authentication/widgets/form_button.dart';
 
-class UsernameScreen extends StatefulWidget {
-  const UsernameScreen({super.key});
+class EmailScreen extends StatefulWidget {
+  const EmailScreen({super.key});
 
   @override
-  State<UsernameScreen> createState() => _UsernameScreenState();
+  State<EmailScreen> createState() => _EmailScreenState();
 }
 
-class _UsernameScreenState extends State<UsernameScreen> {
+class _EmailScreenState extends State<EmailScreen> {
   final TextEditingController _usernameController = TextEditingController();
 
   String _username = '';
@@ -25,15 +24,6 @@ class _UsernameScreenState extends State<UsernameScreen> {
         _username = _usernameController.text;
       });
     });
-  }
-
-  void _onNextTap() {
-    if (_username.isEmpty) return;
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => const EmailScreen(),
-      ),
-    );
   }
 
   @override
@@ -57,25 +47,17 @@ class _UsernameScreenState extends State<UsernameScreen> {
           children: [
             Gaps.v40,
             const Text(
-              '사용자 이름 만들기',
+              '당신의 이메일은 무엇인가요?',
               style: TextStyle(
                 fontSize: Sizes.size24,
                 fontWeight: FontWeight.w700,
-              ),
-            ),
-            Gaps.v8,
-            const Text(
-              '나중에 언제든지 변경할 수 있습니다.',
-              style: TextStyle(
-                fontSize: Sizes.size16,
-                color: Colors.black54,
               ),
             ),
             Gaps.v16,
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
-                hintText: "사용자 이름",
+                hintText: "이메일",
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey.shade400,
@@ -90,9 +72,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
               cursorColor: Theme.of(context).primaryColor,
             ),
             Gaps.v28,
-            GestureDetector(
-                onTap: _onNextTap,
-                child: FormButton(desabled: _username.isEmpty)),
+            FormButton(desabled: _username.isEmpty),
           ],
         ),
       ),
