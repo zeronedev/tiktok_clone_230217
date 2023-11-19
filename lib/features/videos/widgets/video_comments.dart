@@ -17,7 +17,9 @@ class _VideoCommentsState extends State<VideoComments> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Container(
+      height: size.height * 0.8,
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Sizes.size10),
@@ -34,69 +36,107 @@ class _VideoCommentsState extends State<VideoComments> {
                 icon: const FaIcon(FontAwesomeIcons.xmark)),
           ],
         ),
-        body: ListView.separated(
-          padding: const EdgeInsets.symmetric(
-            vertical: Sizes.size10,
-            horizontal: Sizes.size16,
-          ),
-          separatorBuilder: (context, index) => Gaps.v20,
-          itemCount: 10,
-          itemBuilder: (context, index) => Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const CircleAvatar(
-                radius: 18,
-                child: Text("기현"),
+        body: Stack(
+          children: [
+            ListView.separated(
+              padding: const EdgeInsets.symmetric(
+                vertical: Sizes.size10,
+                horizontal: Sizes.size16,
               ),
-              Gaps.h10,
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '기현',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: Sizes.size14,
+              separatorBuilder: (context, index) => Gaps.v20,
+              itemCount: 10,
+              itemBuilder: (context, index) => Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const CircleAvatar(
+                    radius: 18,
+                    child: Text("기현"),
+                  ),
+                  Gaps.h10,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          '기현',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: Sizes.size14,
+                            color: Colors.grey.shade500,
+                          ),
+                        ),
+                        Gaps.v3,
+                        const Text(
+                          '이 생성자는 실제로 표시되는 하위 항목에 대해서만 빌더가 호출되므로 항목 및 구분 기호 하위 항목이 많은 목록 보기에 적합합니다. ',
+                        ),
+                      ],
+                    ),
+                  ),
+                  Gaps.h10,
+                  Column(
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.heart,
+                        size: Sizes.size20,
                         color: Colors.grey.shade500,
                       ),
-                    ),
-                    Gaps.v3,
-                    const Text(
-                      '이 생성자는 실제로 표시되는 하위 항목에 대해서만 빌더가 호출되므로 항목 및 구분 기호 하위 항목이 많은 목록 보기에 적합합니다. ',
-                    ),
-                  ],
-                ),
-              ),
-              Gaps.h10,
-              Column(
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.heart,
-                    size: Sizes.size20,
-                    color: Colors.grey.shade500,
-                  ),
-                  Gaps.v2,
-                  Text(
-                    '52.2K',
-                    style: TextStyle(
-                      color: Colors.grey.shade500,
-                    ),
+                      Gaps.v2,
+                      Text(
+                        '52.2K',
+                        style: TextStyle(
+                          color: Colors.grey.shade500,
+                        ),
+                      )
+                    ],
                   )
                 ],
-              )
-            ],
-          ),
-        ),
-        bottomNavigationBar: BottomAppBar(
-          child: Row(children: [
-            CircleAvatar(
-              radius: 18,
-              backgroundColor: Colors.grey.shade500,
-              foregroundColor: Colors.white,
-              child: const Text('기현'),
+              ),
+            ),
+            Positioned(
+              bottom: 0,
+              width: size.width,
+              child: BottomAppBar(
+                color: Colors.white,
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    left: Sizes.size16,
+                    right: Sizes.size16,
+                    bottom: Sizes.size10,
+                    top: Sizes.size5,
+                  ),
+                  child: Row(children: [
+                    CircleAvatar(
+                      radius: 18,
+                      backgroundColor: Colors.grey.shade500,
+                      foregroundColor: Colors.white,
+                      child: const Text('기현'),
+                    ),
+                    Gaps.h10,
+                    Expanded(
+                      child: TextField(
+                        cursorColor: Theme.of(context).primaryColor,
+                        decoration: InputDecoration(
+                          hintText: "댓글을 입력해 주세요.",
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(
+                              Sizes.size12,
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          filled: true,
+                          fillColor: Colors.grey.shade200,
+                          contentPadding: const EdgeInsets.symmetric(
+                            vertical: Sizes.size12,
+                            horizontal: Sizes.size10,
+                          ),
+                        ),
+                      ),
+                    )
+                  ]),
+                ),
+              ),
             )
-          ]),
+          ],
         ),
       ),
     );
