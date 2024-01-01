@@ -31,6 +31,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
             title: const Text("Enable notifications"),
             subtitle: const Text("Enable notifications"),
           ),
+          CheckboxListTile(
+            activeColor: Colors.black,
+            value: _notifications,
+            onChanged: _onNotificationsChanged,
+            title: const Text("Enable notifications"),
+          ),
           ListTile(
             onTap: () async {
               final date = await showDatePicker(
