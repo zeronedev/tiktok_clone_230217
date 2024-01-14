@@ -98,7 +98,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
         title: AnimatedOpacity(
           opacity: _showTitle ? 1 : 0,
           duration: const Duration(milliseconds: 300),
-          child: const Text('관심 분야를 선택하세요'),
+          child: const Text("Choose your interests"),
         ),
       ),
       body: Scrollbar(
@@ -116,7 +116,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
               children: [
                 Gaps.v32,
                 const Text(
-                  "관심 분야를 선택하세요",
+                  "Choose your interests",
                   style: TextStyle(
                     fontSize: Sizes.size40,
                     fontWeight: FontWeight.bold,
@@ -124,7 +124,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
                 ),
                 Gaps.v20,
                 const Text(
-                  "더 나은 비디오 추천을 받으세요",
+                  "Get better video recommendations",
                   style: TextStyle(
                     fontSize: Sizes.size20,
                   ),
@@ -143,29 +143,26 @@ class _InterestsScreenState extends State<InterestsScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        elevation: 1,
-        child: Padding(
-          padding: const EdgeInsets.only(
-            bottom: Sizes.size40,
-            top: Sizes.size16,
-            left: Sizes.size24,
-            right: Sizes.size24,
-          ),
-          child: GestureDetector(
-            onTap: _onNextTap,
-            child: Container(
-              padding: const EdgeInsets.symmetric(
-                vertical: Sizes.size20,
-              ),
-              decoration: BoxDecoration(color: Theme.of(context).primaryColor),
-              child: const Text(
-                '다음',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: Sizes.size16,
-                ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(
+          bottom: Sizes.size40,
+          top: Sizes.size16,
+          left: Sizes.size24,
+          right: Sizes.size24,
+        ),
+        child: GestureDetector(
+          onTap: _onNextTap,
+          child: Container(
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.size20,
+            ),
+            decoration: BoxDecoration(color: Theme.of(context).primaryColor),
+            child: const Text(
+              'Next',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: Sizes.size16,
               ),
             ),
           ),

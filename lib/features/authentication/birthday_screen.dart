@@ -58,7 +58,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
           children: [
             Gaps.v40,
             const Text(
-              '당신의 생일은 언제입니까?',
+              "When's your birthday?",
               style: TextStyle(
                 fontSize: Sizes.size24,
                 fontWeight: FontWeight.w700,
@@ -66,7 +66,7 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
             ),
             Gaps.v8,
             const Text(
-              '귀하의 생일은 공개적으로 표시되지 않습니다.',
+              "Your birthday won't be shown publicly.",
               style: TextStyle(
                 fontSize: Sizes.size16,
                 color: Colors.black54,
@@ -96,15 +96,13 @@ class _BirthdayScreenState extends State<BirthdayScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomAppBar(
-        child: SizedBox(
-          height: 300,
-          child: CupertinoDatePicker(
-            maximumDate: initialDate,
-            initialDateTime: initialDate,
-            mode: CupertinoDatePickerMode.date,
-            onDateTimeChanged: _setTextfieldDate,
-          ),
+      bottomNavigationBar: SizedBox(
+        height: 300,
+        child: CupertinoDatePicker(
+          maximumDate: initialDate,
+          initialDateTime: initialDate,
+          mode: CupertinoDatePickerMode.date,
+          onDateTimeChanged: _setTextfieldDate,
         ),
       ),
     );

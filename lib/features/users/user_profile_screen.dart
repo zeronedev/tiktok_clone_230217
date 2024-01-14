@@ -72,8 +72,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Column(
-                            children: const [
+                          const Column(
+                            children: [
                               Text(
                                 '97',
                                 style: TextStyle(
@@ -97,8 +97,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             indent: Sizes.size14,
                             endIndent: Sizes.size14,
                           ),
-                          Column(
-                            children: const [
+                          const Column(
+                            children: [
                               Text(
                                 '10M',
                                 style: TextStyle(
@@ -122,8 +122,8 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                             indent: Sizes.size14,
                             endIndent: Sizes.size14,
                           ),
-                          Column(
-                            children: const [
+                          const Column(
+                            children: [
                               Text(
                                 '194.7M',
                                 style: TextStyle(
@@ -175,9 +175,9 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                       ),
                     ),
                     Gaps.v14,
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
+                      children: [
                         FaIcon(
                           FontAwesomeIcons.link,
                           size: Sizes.size12,

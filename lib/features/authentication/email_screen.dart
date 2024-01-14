@@ -38,7 +38,7 @@ class _EmailScreenState extends State<EmailScreen> {
     final regExp = RegExp(
         r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+");
     if (!regExp.hasMatch(_email)) {
-      return "유효하지 않은 이메일 입니다.";
+      return "Email not valid";
     }
     return null;
   }
@@ -70,7 +70,7 @@ class _EmailScreenState extends State<EmailScreen> {
             children: [
               Gaps.v40,
               const Text(
-                '당신의 이메일은 무엇인가요?',
+                'What is your email?',
                 style: TextStyle(
                   fontSize: Sizes.size24,
                   fontWeight: FontWeight.w700,
@@ -83,7 +83,7 @@ class _EmailScreenState extends State<EmailScreen> {
                 onEditingComplete: _onSubmit,
                 autocorrect: false,
                 decoration: InputDecoration(
-                  hintText: "이메일",
+                  hintText: "Email",
                   errorText: _isEmailValid(),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(

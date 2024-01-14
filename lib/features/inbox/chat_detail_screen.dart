@@ -15,26 +15,26 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: ListTile(
+        title: const ListTile(
           contentPadding: EdgeInsets.zero,
           horizontalTitleGap: Sizes.size8,
-          leading: const CircleAvatar(
+          leading: CircleAvatar(
             radius: Sizes.size24,
             foregroundImage: NetworkImage(
               "https://avatars.githubusercontent.com/u/23442159?v=4",
             ),
             child: Text('기현'),
           ),
-          title: const Text(
+          title: Text(
             '기현',
             style: TextStyle(
               fontWeight: FontWeight.w600,
             ),
           ),
-          subtitle: const Text('Active now'),
+          subtitle: Text('Active now'),
           trailing: Row(
             mainAxisSize: MainAxisSize.min,
-            children: const [
+            children: [
               FaIcon(
                 FontAwesomeIcons.flag,
                 color: Colors.black,

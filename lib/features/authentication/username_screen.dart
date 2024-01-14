@@ -57,7 +57,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
           children: [
             Gaps.v40,
             const Text(
-              '사용자 이름 만들기',
+              'Create username',
               style: TextStyle(
                 fontSize: Sizes.size24,
                 fontWeight: FontWeight.w700,
@@ -65,7 +65,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
             ),
             Gaps.v8,
             const Text(
-              '나중에 언제든지 변경할 수 있습니다.',
+              'You can always change this later.',
               style: TextStyle(
                 fontSize: Sizes.size16,
                 color: Colors.black54,
@@ -75,7 +75,7 @@ class _UsernameScreenState extends State<UsernameScreen> {
             TextField(
               controller: _usernameController,
               decoration: InputDecoration(
-                hintText: "사용자 이름",
+                hintText: "Username",
                 enabledBorder: UnderlineInputBorder(
                   borderSide: BorderSide(
                     color: Colors.grey.shade400,
@@ -91,8 +91,9 @@ class _UsernameScreenState extends State<UsernameScreen> {
             ),
             Gaps.v28,
             GestureDetector(
-                onTap: _onNextTap,
-                child: FormButton(desabled: _username.isEmpty)),
+              onTap: _onNextTap,
+              child: FormButton(desabled: _username.isEmpty),
+            ),
           ],
         ),
       ),

@@ -75,7 +75,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
             children: [
               Gaps.v40,
               const Text(
-                '패스워드',
+                'Password',
                 style: TextStyle(
                   fontSize: Sizes.size24,
                   fontWeight: FontWeight.w700,
@@ -112,7 +112,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                       ),
                     ],
                   ),
-                  hintText: "패스워드",
+                  hintText: "Make it strong!",
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(
                       color: Colors.grey.shade400,
@@ -128,7 +128,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
               ),
               Gaps.v10,
               const Text(
-                '패스워드는:',
+                'Your password must have:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Gaps.v10,
@@ -142,7 +142,7 @@ class _PasswordScreenState extends State<PasswordScreen> {
                         : Colors.grey.shade400,
                   ),
                   Gaps.h5,
-                  const Text('8자 이상 20자 이하로 입력해 주세요.'),
+                  const Text('8 to 20 characters'),
                 ],
               ),
               Gaps.v28,

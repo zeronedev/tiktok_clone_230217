@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:tiktok_clone_230217/constants/gaps.dart';
 import 'package:tiktok_clone_230217/constants/sizes.dart';
 import 'package:tiktok_clone_230217/features/main_navigation/main_navigation_screen.dart';
+import 'package:tiktok_clone_230217/utils.dart';
 
 enum Direction { right, left }
 
@@ -62,12 +63,12 @@ class _TutorialScreenState extends State<TutorialScreen> {
           padding: const EdgeInsets.symmetric(horizontal: Sizes.size24),
           child: SafeArea(
             child: AnimatedCrossFade(
-              firstChild: Column(
+              firstChild: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Gaps.v80,
                   Text(
-                    "멋진 비디오를 시청하세요!",
+                    "Watch cool videos!",
                     style: TextStyle(
                       fontSize: Sizes.size36,
                       fontWeight: FontWeight.bold,
@@ -75,19 +76,19 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   ),
                   Gaps.v16,
                   Text(
-                    "동영상은 보고, 좋아하고, 공유한 내용을 기반으로 개인화됩니다.",
+                    "Videos are personalized for you based on what you watch, like, and share.",
                     style: TextStyle(
                       fontSize: Sizes.size20,
                     ),
                   ),
                 ],
               ),
-              secondChild: Column(
+              secondChild: const Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
+                children: [
                   Gaps.v80,
                   Text(
-                    "규칙을 따르세요!",
+                    "Follow the rules",
                     style: TextStyle(
                       fontSize: Sizes.size36,
                       fontWeight: FontWeight.bold,
@@ -95,7 +96,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
                   ),
                   Gaps.v16,
                   Text(
-                    "함께 비디오를 공유하는 사용자들을 존중해 주세요.",
+                    "Videos are personalized for you based on what you watch, like, and share.",
                     style: TextStyle(
                       fontSize: Sizes.size20,
                     ),
@@ -109,11 +110,14 @@ class _TutorialScreenState extends State<TutorialScreen> {
             ),
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
+        bottomNavigationBar: Container(
+          color: isDarkMode(context) ? Colors.black : Colors.white,
           child: Padding(
-            padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size24,
-              horizontal: Sizes.size24,
+            padding: const EdgeInsets.only(
+              top: Sizes.size32,
+              bottom: Sizes.size64,
+              left: Sizes.size24,
+              right: Sizes.size24,
             ),
             child: AnimatedOpacity(
               duration: const Duration(milliseconds: 300),
@@ -121,7 +125,7 @@ class _TutorialScreenState extends State<TutorialScreen> {
               child: CupertinoButton(
                 onPressed: _onEnterAppTap,
                 color: Theme.of(context).primaryColor,
-                child: const Text('앱시작하기'),
+                child: const Text('Enter the app!'),
               ),
             ),
           ),
