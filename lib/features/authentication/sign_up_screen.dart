@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:tiktok_clone_230217/constants/gaps.dart';
 import 'package:tiktok_clone_230217/constants/sizes.dart';
 import 'package:tiktok_clone_230217/features/authentication/username_screen.dart';
