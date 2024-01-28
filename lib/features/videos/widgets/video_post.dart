@@ -5,6 +5,7 @@ import 'package:tiktok_clone_230217/constants/gaps.dart';
 import 'package:tiktok_clone_230217/constants/sizes.dart';
 import 'package:tiktok_clone_230217/features/videos/widgets/video_button.dart';
 import 'package:tiktok_clone_230217/features/videos/widgets/video_comments.dart';
+import 'package:tiktok_clone_230217/generated/l10n.dart';
 import 'package:video_player/video_player.dart';
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -192,23 +193,23 @@ class _VideoPostState extends State<VideoPost>
                   foregroundColor: Colors.white,
                   foregroundImage: NetworkImage(
                       "https://avatars.githubusercontent.com/u/23442159?s=400&u=258339829edce5f1ac49675c0c50a5afaa1e0f0d&v=4"),
-                  child: Text("ZOD"),
+                  child: Text("기현"),
                 ),
                 Gaps.v24,
-                const VideoButton(
+                VideoButton(
                   icon: FontAwesomeIcons.solidHeart,
-                  text: "2.9M",
+                  text: S.of(context).likeCount(51235),
                 ),
                 GestureDetector(
                   onTap: () => _onCommentsTap(context),
-                  child: const VideoButton(
+                  child: VideoButton(
                     icon: FontAwesomeIcons.solidComment,
-                    text: "33K",
+                    text: S.of(context).commentCount(751521),
                   ),
                 ),
                 const VideoButton(
                   icon: FontAwesomeIcons.share,
-                  text: "공유",
+                  text: "Share",
                 ),
               ],
             ),
