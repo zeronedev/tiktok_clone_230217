@@ -22,6 +22,7 @@ class TikTokApp extends StatelessWidget {
   const TikTokApp({super.key});
   @override
   Widget build(BuildContext context) {
+    S.load(const Locale('en'));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'TikTok Clone',
