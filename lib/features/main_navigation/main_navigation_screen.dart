@@ -67,8 +67,9 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       ),
       bottomNavigationBar: Container(
         color: _selectedIndex == 0 || isDark ? Colors.black : Colors.white,
-        padding: EdgeInsets.only(
-          bottom: MediaQuery.of(context).padding.bottom + Sizes.size12,
+        padding: const EdgeInsets.only(
+          // bottom: MediaQuery.of(context).padding.bottom + Sizes.size12,
+          bottom: Sizes.size32,
         ),
         child: Padding(
           padding: const EdgeInsets.all(Sizes.size12),

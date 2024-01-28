@@ -84,7 +84,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     fontSize: Sizes.size18,
                                   ),
                                 ),
-                                Gaps.v3,
+                                Gaps.v1,
                                 Text(
                                   'Following',
                                   style: TextStyle(
@@ -109,7 +109,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     fontSize: Sizes.size18,
                                   ),
                                 ),
-                                Gaps.v3,
+                                Gaps.v1,
                                 Text(
                                   'Following',
                                   style: TextStyle(
@@ -134,7 +134,7 @@ class _UserProfileScreenState extends State<UserProfileScreen> {
                                     fontSize: Sizes.size18,
                                   ),
                                 ),
-                                Gaps.v3,
+                                Gaps.v1,
                                 Text(
                                   'Likes',
                                   style: TextStyle(

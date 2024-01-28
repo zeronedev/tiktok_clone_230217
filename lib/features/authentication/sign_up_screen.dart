@@ -109,7 +109,10 @@ class SignUpScreen extends StatelessWidget {
                 ? null
                 : Colors.grey.shade50, // null 일때 다크모드테마 적용
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: Sizes.size32),
+              padding: const EdgeInsets.only(
+                top: Sizes.size32,
+                bottom: Sizes.size64,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

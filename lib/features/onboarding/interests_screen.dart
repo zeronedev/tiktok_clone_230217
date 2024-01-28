@@ -154,7 +154,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
           onTap: _onNextTap,
           child: Container(
             padding: const EdgeInsets.symmetric(
-              vertical: Sizes.size20,
+              vertical: Sizes.size16 + Sizes.size2,
             ),
             decoration: BoxDecoration(color: Theme.of(context).primaryColor),
             child: const Text(
@@ -162,6 +162,7 @@ class _InterestsScreenState extends State<InterestsScreen> {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color: Colors.white,
+                fontWeight: FontWeight.w500,
                 fontSize: Sizes.size16,
               ),
             ),
