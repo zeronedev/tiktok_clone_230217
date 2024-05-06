@@ -1,6 +1,5 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -16,7 +15,7 @@ class VideoRecordingScreen extends StatefulWidget {
 }
 
 class _VideoRecordingScreenState extends State<VideoRecordingScreen>
-    with TickerProviderStateMixin {
+    with TickerProviderStateMixin, WidgetsBindingObserver {
   bool _hasPermission = false;
 
   bool _isSelfieMode = false;
@@ -42,7 +41,18 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
 
   late CameraController _cameraController;
 
-  Future<void> initCameras() async {
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (!_hasPermission) return;
+    if (!_cameraController.value.isInitialized) return;
+    if (state == AppLifecycleState.inactive) {
+      _cameraController.dispose();
+    } else if (state == AppLifecycleState.resumed) {
+      initCamera();
+    }
+  }
+
+  Future<void> initCamera() async {
     final cameras = await availableCameras();
 
     if (cameras.isEmpty) {
@@ -59,6 +69,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
     await _cameraController.prepareForVideoRecording();
 
     _flashMode = _cameraController.value.flashMode;
+    setState(() {});
   }
 
   Future<void> initPermissions() async {
@@ -72,7 +83,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
 
     if (!cameraDenied && !micDenied) {
       _hasPermission = true;
-      await initCameras();
+      await initCamera();
       setState(() {});
     }
   }
@@ -81,6 +92,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
   void initState() {
     super.initState();
     initPermissions();
+    WidgetsBinding.instance.addObserver(this);
     _progressAnimationController.addListener(() {
       setState(() {});
     });
@@ -93,7 +105,7 @@ class _VideoRecordingScreenState extends State<VideoRecordingScreen>
 
   Future<void> _toggleSelfieMode() async {
     _isSelfieMode = !_isSelfieMode;
-    await initCameras();
+    await initCamera();
     setState(() {});
   }
 

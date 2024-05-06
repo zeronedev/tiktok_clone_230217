@@ -1,4 +1,5 @@
 {
     "commentTranslate.source": "Google",
-    "commentTranslate.targetLanguage": "ko"
+    "commentTranslate.targetLanguage": "ko",
+    "commentTranslate.multiLineMerge": true
 }
