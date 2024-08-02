@@ -8,11 +8,11 @@ class ChatDetailScreen extends StatefulWidget {
   static const routeName = "chatDetail";
   static const routeURL = ":chatId";
 
-  final chatId;
+  final String chatId;
 
   const ChatDetailScreen({
     super.key,
-    this.chatId,
+    required this.chatId,
   });
 
   @override

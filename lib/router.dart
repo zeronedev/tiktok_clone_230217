@@ -1,3 +1,4 @@
+import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
 import 'package:tiktok_clone_230217/common/widgets/main_navigation/main_navigation_screen.dart';
 import 'package:tiktok_clone_230217/features/authentication/login_screen.dart';
@@ -48,7 +49,7 @@ final router = GoRouter(
             name: ChatDetailScreen.routeName,
             path: ChatDetailScreen.routeURL,
             builder: (context, state) {
-              final chatId = state.pathParameters["chatId"];
+              final chatId = state.pathParameters["chatId"]!;
               return ChatDetailScreen(
                 chatId: chatId,
               );
@@ -58,7 +59,20 @@ final router = GoRouter(
     GoRoute(
       name: VideoRecordingScreen.routeName,
       path: VideoRecordingScreen.routeURL,
-      builder: (context, state) => const VideoRecordingScreen(),
+      pageBuilder: (context, state) => CustomTransitionPage(
+        transitionDuration: const Duration(milliseconds: 200),
+        child: const VideoRecordingScreen(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          final position = Tween(
+            begin: const Offset(0, 1),
+            end: Offset.zero,
+          ).animate(animation);
+          return SlideTransition(
+            position: position,
+            child: child,
+          );
+        },
+      ),
     ),
   ],
 );
