@@ -5,7 +5,15 @@ import 'package:tiktok_clone_230217/constants/sizes.dart';
 import 'package:tiktok_clone_230217/utils.dart';
 
 class ChatDetailScreen extends StatefulWidget {
-  const ChatDetailScreen({super.key});
+  static const routeName = "chatDetail";
+  static const routeURL = ":chatId";
+
+  final chatId;
+
+  const ChatDetailScreen({
+    super.key,
+    this.chatId,
+  });
 
   @override
   State<ChatDetailScreen> createState() => _ChatDetailScreenState();
@@ -26,9 +34,9 @@ class _ChatDetailScreenState extends State<ChatDetailScreen> {
             ),
             child: Text('기현'),
           ),
-          title: const Text(
-            '기현',
-            style: TextStyle(
+          title: Text(
+            '기현(${widget.chatId})',
+            style: const TextStyle(
               fontWeight: FontWeight.w600,
             ),
           ),
