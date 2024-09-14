@@ -34,16 +34,14 @@ class _SettingsScreenState extends State<SettingsScreen> {
         body: ListView(
           children: [
             SwitchListTile.adaptive(
-              value: context.watch<PlaybackConfigViewModel>().muted,
-              onChanged: (value) =>
-                  context.read<PlaybackConfigViewModel>().setMuted(value),
+              value: false,
+              onChanged: (value) => {},
               title: const Text("Mute video"),
               subtitle: const Text("비디오는 기본적으로 음소거됩니다."),
             ),
             SwitchListTile.adaptive(
-              value: context.watch<PlaybackConfigViewModel>().autoplay,
-              onChanged: (value) =>
-                  context.read<PlaybackConfigViewModel>().setAutoplay(value),
+              value: false,
+              onChanged: (value) => {},
               title: const Text("Autoplay"),
               subtitle: const Text("비디오가 자동으로 재생되기 시작합니다."),
             ),

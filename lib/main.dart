@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:tiktok_clone_230217/constants/sizes.dart';
 import 'package:tiktok_clone_230217/features/videos/repos/playback_config_repo.dart';
@@ -24,11 +24,10 @@ void main() async {
   final repository = PlaybackConfigRepository(preference);
 
   runApp(
-    MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => PlaybackConfigViewModel(repository),
-        ),
+    ProviderScope(
+      overrides: [
+        playbackConfigProvider
+            .overrideWith(() => PlaybackConfigViewModel(repository))
       ],
       child: const TikTokApp(),
     ),
