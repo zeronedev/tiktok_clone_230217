@@ -1,29 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:provider/provider.dart';
 import 'package:tiktok_clone_230217/features/videos/view_models/playback_config_vm.dart';
 
-class SettingsScreen extends StatefulWidget {
+class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
   @override
-  State<SettingsScreen> createState() => _SettingsScreenState();
-}
-
-class _SettingsScreenState extends State<SettingsScreen> {
-  bool _notifications = false;
-
-  void _onNotificationsChanged(bool? newValue) {
-    if (newValue == null) return;
-    setState(() {
-      _notifications = newValue;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Localizations.override(
       context: context,
       locale: const Locale("ko"),
@@ -34,27 +20,29 @@ class _SettingsScreenState extends State<SettingsScreen> {
         body: ListView(
           children: [
             SwitchListTile.adaptive(
-              value: false,
-              onChanged: (value) => {},
+              value: ref.watch(playbackConfigProvider).muted,
+              onChanged: (value) =>
+                  ref.read(playbackConfigProvider.notifier).setMuted(value),
               title: const Text("Mute video"),
               subtitle: const Text("비디오는 기본적으로 음소거됩니다."),
             ),
             SwitchListTile.adaptive(
-              value: false,
-              onChanged: (value) => {},
+              value: ref.watch(playbackConfigProvider).autoplay,
+              onChanged: (value) =>
+                  ref.read(playbackConfigProvider.notifier).setAutoplay(value),
               title: const Text("Autoplay"),
               subtitle: const Text("비디오가 자동으로 재생되기 시작합니다."),
             ),
             SwitchListTile.adaptive(
-              value: _notifications,
-              onChanged: _onNotificationsChanged,
+              value: false,
+              onChanged: (value) {},
               title: const Text("Enable notifications"),
               subtitle: const Text("They will be cute."),
             ),
             CheckboxListTile(
               activeColor: Colors.black,
-              value: _notifications,
-              onChanged: _onNotificationsChanged,
+              value: false,
+              onChanged: (value) {},
               title: const Text("Marketing emails"),
               subtitle: const Text("We won't spam you."),
             ),
@@ -69,7 +57,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 if (kDebugMode) {
                   print(date);
                 }
-                if (!mounted) return;
                 final time = await showTimePicker(
                   context: context,
                   initialTime: TimeOfDay.now(),
@@ -77,7 +64,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 if (kDebugMode) {
                   print(time);
                 }
-                if (!mounted) return;
                 final booking = await showDateRangePicker(
                   context: context,
                   firstDate: DateTime(1980),
