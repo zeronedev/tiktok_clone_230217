@@ -1,5 +1,5 @@
 {
-    "commentTranslate.source": "Google",
-    "commentTranslate.targetLanguage": "ko",
-    "commentTranslate.multiLineMerge": true
+  "commentTranslate.source": "Google",
+  "commentTranslate.targetLanguage": "ko",
+  "commentTranslate.multiLineMerge": false
 }

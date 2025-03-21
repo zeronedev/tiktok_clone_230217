@@ -11,7 +11,9 @@ class SignUpViewModel extends AsyncNotifier<void> {
   late final AuthenticationRepository _authRepo;
 
   @override
-  FutureOr<void> build() {}
+  FutureOr<void> build() {
+    _authRepo = ref.read(authRepo);
+  }
 
   Future<void> signUp(BuildContext context) async {
     state = const AsyncValue.loading();
@@ -22,7 +24,7 @@ class SignUpViewModel extends AsyncNotifier<void> {
         form["email"],
         form["password"],
       );
-      await users.createAccount(userCredential);
+      await users.createProfile(userCredential);
     });
     if (state.hasError) {
       showFirebaseErrorSnack(context, state.error);
