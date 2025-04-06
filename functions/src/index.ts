@@ -25,9 +25,21 @@ export const onVideoCreated = onDocumentCreated(
     console.log("New video created:", videoId, videoData);
 
     // Perform any additional processing here
-    await admin.firestore().collection("videos").doc(videoId).update({
-      hello: "from functions",
-      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+    const spawn = require("child-process-promise").spawn;
+    await spawn("ffmpeg", [
+      "-i",
+      videoData.fileUrl,
+      "-ss",
+      "00:00:01.000",
+      "-vframes",
+      "1",
+      "-vf",
+      "scale=150:-1",
+      `/tmp/${videoId}.jpg`,
+    ]);
+    const storage = admin.storage();
+    await storage.bucket().upload(`/tmp/${videoId}.jpg`, {
+      destination: `thumbnails/${videoId}.jpg`,
     });
   }
 );
