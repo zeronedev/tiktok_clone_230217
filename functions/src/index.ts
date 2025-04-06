@@ -1,45 +1,47 @@
-import * as functions from "firebase-functions";
+import { onDocumentWritten } from "firebase-functions/v2/firestore";
 import * as admin from "firebase-admin";
-import { onDocumentCreated } from "firebase-functions/firestore";
 
-// Initialize Firebase Admin
 admin.initializeApp();
 
-// Example HTTP function
-export const helloWorld = functions.https.onRequest((request, response) => {
-  response.send("Hello from Firebase!");
-});
-
-// Example Firestore trigger
-export const onVideoCreated = onDocumentCreated(
+export const onVideoCreated = onDocumentWritten(
   "videos/{videoId}",
   async (event) => {
-    const videoId = event.params.videoId;
-    const videoData = event.data?.data();
+    const snapshot = event.data?.after;
+    if (!snapshot) return;
 
-    if (!videoData) {
-      console.error("No data found for video:", videoId);
-      return;
-    }
-
-    console.log("New video created:", videoId, videoData);
-
-    // Perform any additional processing here
     const spawn = require("child-process-promise").spawn;
+    const video = snapshot.data();
+    if (!video) return;
+
     await spawn("ffmpeg", [
       "-i",
-      videoData.fileUrl,
+      video.fileUrl,
       "-ss",
       "00:00:01.000",
       "-vframes",
       "1",
       "-vf",
       "scale=150:-1",
-      `/tmp/${videoId}.jpg`,
+      `/tmp/${snapshot.id}.jpg`,
     ]);
+
     const storage = admin.storage();
-    await storage.bucket().upload(`/tmp/${videoId}.jpg`, {
-      destination: `thumbnails/${videoId}.jpg`,
+    const [file] = await storage.bucket().upload(`/tmp/${snapshot.id}.jpg`, {
+      destination: `thumbnails/${snapshot.id}.jpg`,
     });
+
+    await file.makePublic();
+    await snapshot.ref.update({ thumbnailUrl: file.publicUrl() });
+
+    const db = admin.firestore();
+    await db
+      .collection("users")
+      .doc(video.creatorUid)
+      .collection("videos")
+      .doc(snapshot.id)
+      .set({
+        thumbnailUrl: file.publicUrl(),
+        videoId: snapshot.id,
+      });
   }
 );
