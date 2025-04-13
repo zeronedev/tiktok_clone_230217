@@ -50,6 +50,15 @@ class VideoTimelineScreenState extends ConsumerState<VideoTimelineScreen> {
   @override
   Widget build(BuildContext context) {
     return ref.watch(timelineProvider).when(
+          loading: () => const Center(
+            child: CircularProgressIndicator(),
+          ),
+          error: (error, stackTrace) => Center(
+            child: Text(
+              '동영상을 로드할 수 없습니다: $error',
+              style: const TextStyle(color: Colors.white),
+            ),
+          ),
           data: (videos) => RefreshIndicator(
             onRefresh: _onRefresh,
             displacement: 50,
@@ -60,20 +69,15 @@ class VideoTimelineScreenState extends ConsumerState<VideoTimelineScreen> {
               scrollDirection: Axis.vertical,
               onPageChanged: _onPageChanged,
               itemCount: videos.length,
-              itemBuilder: (context, index) => VideoPost(
-                onVideoFinished: _onVideoFinished,
-                index: index,
-              ),
+              itemBuilder: (context, index) {
+                final videoData = videos[index];
+                return VideoPost(
+                  onVideoFinished: _onVideoFinished,
+                  index: index,
+                  videoData: videoData,
+                );
+              },
             ),
-          ),
-          error: (error, stackTrace) => Center(
-            child: Text(
-              '동영상을 로드할 수 없습니다: $error',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-          loading: () => const Center(
-            child: CircularProgressIndicator(),
           ),
         );
   }
