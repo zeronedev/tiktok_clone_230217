@@ -1,4 +1,9 @@
-import { onDocumentWritten } from "firebase-functions/v2/firestore";
+import {
+  onDocumentWritten,
+  onDocumentCreated,
+  onDocumentDeleted,
+  FirestoreEvent,
+} from "firebase-functions/v2/firestore";
 import * as admin from "firebase-admin";
 
 admin.initializeApp();
@@ -42,6 +47,40 @@ export const onVideoCreated = onDocumentWritten(
       .set({
         thumbnailUrl: file.publicUrl(),
         videoId: snapshot.id,
+      });
+  }
+);
+
+export const onLikedCreated = onDocumentCreated(
+  "likes/{likeId}",
+  async (event: FirestoreEvent<any>) => {
+    const snapshot = event.data;
+    if (!snapshot) return;
+
+    const db = admin.firestore();
+    const [videoId, _] = snapshot.id.split("000");
+    await db
+      .collection("videos")
+      .doc(videoId)
+      .update({
+        likes: admin.firestore.FieldValue.increment(1),
+      });
+  }
+);
+
+export const onLikedRemoved = onDocumentDeleted(
+  "likes/{likeId}",
+  async (event: FirestoreEvent<any>) => {
+    const snapshot = event.data;
+    if (!snapshot) return;
+
+    const db = admin.firestore();
+    const [videoId, _] = snapshot.id.split("000");
+    await db
+      .collection("videos")
+      .doc(videoId)
+      .update({
+        likes: admin.firestore.FieldValue.increment(-1),
       });
   }
 );
