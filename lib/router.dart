@@ -5,9 +5,9 @@ import 'package:tiktok_clone_230217/common/widgets/main_navigation/main_navigati
 import 'package:tiktok_clone_230217/features/authentication/login_screen.dart';
 import 'package:tiktok_clone_230217/features/authentication/repos/authentication_repo.dart';
 import 'package:tiktok_clone_230217/features/authentication/sign_up_screen.dart';
-import 'package:tiktok_clone_230217/features/inbox/activity_screen.dart';
-import 'package:tiktok_clone_230217/features/inbox/chat_detail_screen.dart';
-import 'package:tiktok_clone_230217/features/inbox/chats_screen.dart';
+import 'package:tiktok_clone_230217/features/inbox/views/activity_screen.dart';
+import 'package:tiktok_clone_230217/features/inbox/views/chat_detail_screen.dart';
+import 'package:tiktok_clone_230217/features/inbox/views/chats_screen.dart';
 import 'package:tiktok_clone_230217/features/onboarding/interests_screen.dart';
 import 'package:tiktok_clone_230217/features/videos/views/video_recording_screen.dart';
 
